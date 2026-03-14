@@ -1,36 +1,69 @@
 # Principle 10: Ambitious Genericity
 
 Agents should be as broadly capable as possible, narrowed through configuration, not code. The long-term trajectory is a pocket Omnissiah that can reason and act across your entire organization. The other nine principles are what make that ambition safe.
+
 This is the principle that ties the others together, and the one most likely to provoke disagreement.
+
 The accumulated wisdom of software engineering argues for specificity. The Single Responsibility Principle. The Unix philosophy - do one thing and do it well. Interface segregation. Bounded contexts. These are not arbitrary preferences. They are hard-won lessons from decades of building systems that collapsed under the weight of their own ambition. The God Object is an anti-pattern for very good reasons.
+
 And yet.
+
 The nine principles that precede this one exist to create the conditions under which broad capability is safe. The Agentic Interface Layer provides governed, curated data access. Deterministic actions ensure that execution is predictable regardless of how broadly the agent can reach. Composable recursion means the agent's breadth comes from the skill library, not from internal complexity. Self-healing ensures that the system recovers from failures that broad scope inevitably introduces. Transparent feedback loops ensure that every decision is observable and improvable. Permission governance ensures that breadth of capability does not mean breadth of access - the platform may be omniscient, but individual agents are scoped.
+
 Ambitious genericity is not a contradiction of good engineering. It is the reward for doing good engineering thoroughly enough.
+
 There is, admittedly, a circularity here that is worth stating openly. The nine preceding principles are argued to be valuable partly because they enable ambitious genericity. And ambitious genericity is argued to be safe because the nine principles govern it. The principles justify the ambition, and the ambition justifies the principles. This is not an accident - it is the nature of a mutually reinforcing architectural system. The components do not stand in a strict linear dependency. They form a web, where each element is both enabled by and enabling of the others. The honest claim is not that the logic flows in one direction, but that the system is coherent as a whole - that the principles and the ambition make more sense together than any of them make alone.
+
 What Genericity Actually Means
+
 The principle is frequently misunderstood, so it is worth being precise about what it does and does not argue.
+
 It does not argue for agents that try to do everything. An agent that attempts to handle every possible request with no domain knowledge, no prepared data, and no composable skills is not generically capable - it is generically mediocre. Genericity without infrastructure is just vagueness.
+
 It argues for agents whose capability surface is broad but whose deployment is configured. The same orchestrating agent, connected to the same skill registry and the same AIL, should be deployable across different domains by changing its configuration - its permitted data scope, its available skills, its outcome definitions, its interaction gates - rather than by rewriting its core logic. The intelligence is generic. The application is specific.
+
 It argues for skills that are reusable across contexts. A skill that retrieves data from a database should work regardless of which database, which table, or which agent is calling it. A skill that sends a notification should work regardless of which team is being notified or which workflow triggered it. Specificity should live in the parameters, not in the skill's implementation.
+
 It argues for an architecture that compounds. Every agent built under Theotropic Architecture contributes to the same AIL, the same skill registry, the same feedback loops. A narrow agent architecture - where each agent has its own data pipeline, its own skills, its own error handling
+
 - does not compound. It fragments. Genericity is what enables compounding.
+
 The Configuration Layer
+
 If agents are generic and skills are reusable, then the specialization must live somewhere. In Theotropic Architecture, it lives in the configuration layer - the set of parameters that define a specific deployment of a generic architecture:
+
 Scope. Which portions of the AIL is this agent permitted to access? Which domains, which systems, which data sources?
+
 Skills. Which skills from the registry are available to this agent? A customer-facing agent may have access to retrieval and notification skills but not to write skills that modify backend systems. An operations agent may have access to both.
+
 Outcomes. What is this agent trying to achieve? The outcome definitions (Principle 4) are configuration, not code. The same orchestrating agent can pursue "keep CRM and ERP in sync" or "provide the finance team with accurate expenditure analysis" depending on how it is configured.
+
 Interaction gates. Where are the human approval points? Which actions require explicit human sign-off? This varies by deployment - a high-stakes financial workflow may have more gates than a routine data retrieval workflow.
+
 Permissions. What can this agent do? What can it see? What is it prohibited from? The permission store (Principle 3) governs this at a granular level.
+
 The configuration layer is what makes ambitious genericity practical. Without it, genericity is unconstrained and dangerous. With it, genericity is focused and governed. The agent is broadly capable. The deployment is precisely scoped.
+
 The Trajectory
+
 The other nine principles describe how to build agentic systems correctly. This principle describes where that leads if you keep building.
+
 In the crawl stage, genericity means building skills and data layers that are reusable rather than bespoke. The immediate benefit is modest - slightly more effort upfront, slightly less effort on the second agent.
+
 In the walk stage, genericity means multiple agents sharing the same infrastructure, with the configuration layer determining their different scopes and capabilities. New agents are faster to deploy because the infrastructure already exists.
+
 In the run stage, genericity means agents operating at significant scope, orchestrating complex multi-domain workflows against a broad AIL, with a comprehensive skill registry. The architecture is doing more with less, and each new capability extends the platform rather than creating a new silo.
+
 At the Theotropic stage, the platform is comprehensive enough to support an agent with enterprise-wide scope. The God Machine is not a single agent that was designed to be omniscient. It is what the platform enables when genericity has been pursued long enough that the infrastructure can support it.
+
 The economic dynamics of this trajectory - why compounding architecture has a more favorable cost curve than tactical agents - are examined in the maturity model and addressed directly in the Known Criticisms section.
+
 Tradeoffs and Limitations
+
 The most honest limitation is that this principle is the least tested at scale. The earlier principles - curated data, deterministic actions, self-healing - are established patterns with production evidence. Ambitious genericity at the level described here - enterprise-wide platforms supporting broadly capable agents - is an architectural projection, not a production observation. The trajectory is logical. Whether it survives contact with the full complexity of enterprise reality at scale is an open question.
+
 There is a risk that genericity becomes an excuse for never shipping. "We're building a platform" can become an indefinite deferral of specific value. The maturity model is the counter to this - genericity is built incrementally, and each stage delivers specific, measurable value. The platform is not built and then used. It is used and thereby built.
+
 There is also a legitimate question about whether a single architectural pattern is appropriate for all enterprise AI use cases. Some use cases may genuinely be better served by narrow, purpose-built agents with no ambition toward genericity. Embedded AI in a specific product, real-time control systems, highly specialized analytical models - these may not benefit from Theotropic Architecture's approach. The principle argues for genericity as the default for enterprise orchestration agents, not as a universal law for all AI systems.
+
 The God Machine is not inevitable. It is possible - if the architecture is right. The nine principles describe what "right" looks like. This principle describes what the architecture makes possible.
