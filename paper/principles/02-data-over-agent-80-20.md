@@ -1,21 +1,39 @@
 # Principle 2: Data Over Agent (80/20)
 
 Enterprise agentic solutions are roughly 20% agent, 80% data preparation. The model is the easy part. Getting your data ready for it is the actual work.
+
 There is a persistent misconception in enterprise AI adoption that the agent is the hard part. The LLM selection, the prompt engineering, the orchestration logic, the conversational design - these are treated as the core technical challenges, and the data is treated as an input that will be figured out along the way.
+
 In practice, the ratio is closer to the inverse. The overwhelming majority of the effort in building an enterprise agentic solution that actually works - not as a demo, but in production, against real data, with real users - is in the data: finding it, understanding it, cleaning it, structuring it, making it accessible, making it accurate, and keeping it current.
+
 This is not a novel observation. Any practitioner who has shipped an agentic system will recognize it immediately. But it remains architecturally underappreciated, because organizations continue to staff and fund AI initiatives as though the agent is the center of gravity. The data engineering is treated as a prerequisite to be handled quickly so that the interesting work - the AI - can begin.
+
 This inversion of priorities produces a predictable outcome: agents that are sophisticated in design and unreliable in practice, because the data they reason over is incomplete, stale, inconsistent, or structured for human consumption rather than agentic consumption. The agent is not the bottleneck. The data is. Deloitte's 2026 Tech Trends report confirms this at scale: 48% of organizations cite data searchability and 47% cite data reusability as the top challenges in deploying agentic AI - not model capability, not prompt engineering, but the data itself.
+
 Why the Ratio Skews So Heavily
+
 Several factors contribute to the 80/20 split:
+
 Enterprise data is not organized for reasoning. It is organized for operations - for transaction processing, for application serving, for human-readable reporting. The schemas, naming conventions, relationships, and access patterns that make sense for an application or a dashboard do not necessarily make sense for an agent that needs to reason across multiple systems to answer a question. An agent asked to analyze employee performance does not need the same view of the data that an HR application presents to a user. It needs a view optimized for cross-referencing, for temporal comparison, for synthesis across domains. That view rarely exists natively.
+
 Enterprise data is distributed and inconsistent. The information an agent needs to answer a meaningful question almost never lives in a single system. It is spread across databases, SaaS platforms, document repositories, spreadsheets, communication channels, and tribal knowledge that has never been formalized. Worse, the same entity - a customer, an employee, a product - is represented differently across these systems. Field names differ. Formats differ. Identifiers don't match. Data that should agree between systems doesn't. An agent reasoning over distributed, inconsistent data will produce inconsistent results, and no amount of prompt engineering will fix what is fundamentally a data quality problem. The act of assembling and reconciling the relevant data for a given domain is often more complex than anything the agent itself will do with it.
+
 Enterprise data changes. Systems are updated, schemas evolve, new sources come online, old sources are deprecated. A data preparation effort that is treated as a one-time project will degrade over time. The 80% is not a one-time investment. It is ongoing - which is why the Agentic Interface Layer, described in Principle 3, must be a living system rather than a static artifact.
+
 Architectural Implications
+
 If the data is 80% of the work, then the architecture should reflect that proportion. This has several consequences:
+
 Budget and staffing should weight toward data engineering. An AI initiative that allocates most of its resources to agent development and treats data preparation as a setup task is structurally underinvesting in the component most likely to determine success or failure. This is not an argument against investing in agent quality. It is an argument for being honest about where the risk and complexity actually reside.
+
 Agent design should assume curated input. If the architecture includes a properly maintained data layer - the Agentic Interface Layer - then the agent itself can be simpler. It does not need to handle raw, inconsistent, multi-source data. It does not need extensive error handling for data quality issues. It does not need complex transformation logic embedded in its prompts. The agent can be thin precisely because the data layer is thick. This is the direct link between Principle 2 and the Thin Agent philosophy: the more work you do in data preparation, the less work the agent needs to do, and per Principle 1, a simpler agent is a more accurate agent.
+
 Data preparation is not a phase. It is a function. In traditional project planning, data preparation appears as an early phase - something completed before the "real" work begins. In Theotropic Architecture, data preparation is a permanent, ongoing architectural function. The Agentic Interface Layer is continuously maintained, expanded, and refined. Treating it as a phase that ends is how organizations build agents that work in demo and degrade in production.
+
 Tradeoffs and Limitations
+
 The 80/20 ratio is an approximation drawn from experience, not a universal law. The actual split varies depending on the maturity of an organization's data infrastructure, the complexity of the domain, and the scope of the agentic solution. Organizations with well-maintained data warehouses, strong master data management, and clean API layers will find the data preparation effort lighter. Organizations with fragmented, legacy-heavy landscapes will find it heavier.
+
 There is also a risk of over-preparing. It is possible to spend so long perfecting the data layer that no agent is ever built. The data preparation should be driven by agentic use cases, not by an abstract desire for completeness. The Agentic Interface Layer should start small - covering the systems and domains needed for the first agents - and grow organically as new use cases demand it. This is the crawl stage of the maturity model: the data preparation is real and necessary, but it is scoped to immediate value rather than theoretical comprehensiveness.
+
 The principle does not argue that data preparation is more important than agent design. It argues that it is more effortful, and that architectures which fail to account for this will consistently underdeliver - not because the agents are poorly built, but because they are reasoning over data that was never properly prepared for them. In the electricity analogy from the introduction: an enterprise that spends 80% of its AI budget on model selection and prompt engineering and 20% on data preparation has invested heavily in the power cord and almost nothing in the appliance.
